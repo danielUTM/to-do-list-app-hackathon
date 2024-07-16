@@ -2,7 +2,7 @@ const { Client } = require('pg');
 
 module.exports.getClient = async () => {
   const client = new Client({
-	    user: 'danielcampbell',
+	    user: 'bethanyhall',
 	    password: 'password',
 	    host: 'localhost',
 	    port: 5432,
