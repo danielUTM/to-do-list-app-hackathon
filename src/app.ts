@@ -1,13 +1,15 @@
 import express, { Request, Response } from "express";
 import {getAllTasksNonCompleted, insertTask, Tasks} from "./sqlMethods"
+import path from "path";
 
 
 const app = express();
 
 
+app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (_request: Request, response: Response) => { 
-  response.status(200).send("Hello World");
+  response.sendFile(path.join(__dirname, "/public", "index.html"));
 });
 
 /**
