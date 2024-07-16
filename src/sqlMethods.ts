@@ -35,6 +35,4 @@ export async function insertTask(title:String, summary:String, due_by:Date|null,
     const res = await client.query(sql);
 
     await client.end;
-
-    return res.rows;
 }
