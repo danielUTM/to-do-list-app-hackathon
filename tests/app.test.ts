@@ -1,7 +1,11 @@
-import {  } from '../src/app';
+const app = require('../src/app')
+const request = require("supertest")
+const baseURL = "localhost:8080"
 
-describe('testing index file', () => {
-  test('empty string should result in zero', () => {
-    expect(1 + 1).toBe(2);
+describe('testing app file', () => {
+  it("should return 200", async () => {
+    const res = await request(app).get("/")
+    expect(res.statusCode).toEqual(200)
+    expect(res.text).toEqual("Hello World")
   });
 });
