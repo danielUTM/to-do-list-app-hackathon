@@ -24,11 +24,18 @@
   <script type="module">
     document.addEventListener('DOMContentLoaded', async function() {
       // Dummy data 
-      const dummyTasks = [
-        { id: 1, title: 'Task 1', summary: 'Summary for Task 1', due_by: '2024-07-17', assigned_to: 1, completed: false },
-        { id: 2, title: 'Task 2', summary: 'Summary for Task 2', due_by: '2024-07-18', assigned_to: 2, completed: true },
-        { id: 3, title: 'Task 3', summary: 'Summary for Task 3', due_by: '2024-07-19', assigned_to: 3, completed: false }
-      ];
+      // const dummyTasks = [
+      //   { id: 1, title: 'Task 1', summary: 'Summary for Task 1', due_by: '2024-07-17', assigned_to: 1, completed: false },
+      //   { id: 2, title: 'Task 2', summary: 'Summary for Task 2', due_by: '2024-07-18', assigned_to: 2, completed: true },
+      //   { id: 3, title: 'Task 3', summary: 'Summary for Task 3', due_by: '2024-07-19', assigned_to: 3, completed: false }
+      // ];
+
+      const tasksREQ = await fetch("http://localhost:8080/tasks").catch(e =>
+      alert("Failed"))
+
+      const tasks = await tasksREQ.json()
+
+      console.log(tasks)
 
       const todoList = document.getElementById('todo-list');
 
@@ -46,8 +53,8 @@
         });
       }
 
-      // render with dummy tasks
-      renderTasks(dummyTasks);
+      // render with tasks
+      renderTasks(tasks);
 
       // Form submission event handler for adding new tasks
       const addTodoForm = document.getElementById('add-todo-form');
