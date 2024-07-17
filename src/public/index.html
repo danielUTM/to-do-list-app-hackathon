@@ -25,14 +25,14 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
   <script type="module">
+    
+
     document.addEventListener('DOMContentLoaded', async function() {
 
       const tasksREQ = await fetch("http://localhost:8080/tasks").catch(e =>
       alert("Failed"))
 
       const tasks = await tasksREQ.json()
-
-      console.log(tasks)
 
       const todoList = document.getElementById('todo-list');
 
@@ -46,6 +46,16 @@
           if (task.completed) {
             li.classList.add('completed');
           }
+          const button = document.createElement("button")
+          button.onclick = async function() {
+            await fetch(`http://localhost:8080/task?id=${task.id}`, {
+              method:"PATCH",
+            headers:{"Content-Type":"application/json"},
+            }).then(response=>{window.location.reload()});
+          };
+
+          button.innerHTML = "Completed"
+          li.appendChild(button)
           todoList.appendChild(li);
         });
       }
@@ -64,11 +74,12 @@
         event.preventDefault();
         const newTaskTitle = todoTitle.value.trim();
         const newTaskSummary = todoSummary.value.trim();
-        const url = todoDueBy.value === null ?
+        const url = todoDueBy.value === "" ?
                 `http://localhost:8080/tasks?title=${newTaskTitle}&summary=${newTaskSummary}&assigned_to=1`:
                 `http://localhost:8080/tasks?title=${newTaskTitle}&summary=${newTaskSummary}&due_by=${todoDueBy.value.trim()}&assigned_to=1`
+        console.log(url)
           await fetch(url, {
-            method:"post",
+            method:"POST",
             headers:{"Content-Type":"application/json"},
             // body:JSON.stringify(newTask)
           }).then(response=>{window.location.reload()})

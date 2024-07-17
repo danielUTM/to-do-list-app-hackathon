@@ -1,4 +1,5 @@
-SELECT t.title
+SELECT t.id
+     , t.title
      , t.summary
      , t.created_at
      , t.due_by

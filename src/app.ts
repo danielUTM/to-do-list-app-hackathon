@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import {getAllTasksNonCompleted, insertTask, Tasks} from "./sqlMethods"
+import {updateTaskAsCompleted, getAllTasksNonCompleted, insertTask, Tasks} from "./sqlMethods"
 import path from "path";
 
 
@@ -38,8 +38,18 @@ app.post("/tasks", async (req: Request, res: Response) => {
     }
 
 
-
     res.writeHead(200, {
+        'Content-Type': 'application/json'
+    });
+    res.end();
+})
+
+app.patch("/task", async (req: Request, res: Response) => {
+  let id: number = parseInt(req.query.id!.toString());
+
+  await updateTaskAsCompleted(id);
+
+  res.writeHead(200, {
         'Content-Type': 'application/json'
     });
     res.end();
