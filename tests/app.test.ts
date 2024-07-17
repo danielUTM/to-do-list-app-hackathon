@@ -27,7 +27,7 @@ describe("testing app file", () => {
   });
 
   it("mark task as complete returns 200", async () => {
-    const taskId = 1; // Replace with an actual task ID
+    const taskId = 1;
     const spy = jest.spyOn(sql, "updateTaskAsCompleted");
     const res = await request(app).patch(`/task?id=${taskId}`);
     expect(res.statusCode).toEqual(200);
