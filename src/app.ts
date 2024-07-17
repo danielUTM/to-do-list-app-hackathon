@@ -30,10 +30,15 @@ app.get("/tasks", async (req: Request, res: Response) => {
 app.post("/tasks", async (req: Request, res: Response) => {
     let title: String = req.query.title!.toString();
     let summary: String = req.query.summary!.toString();
-    let due_by: Date|null = isNaN(Date.parse(req.query.due_by?.toString() || ""))?null:new Date(Date.parse(req.query.due_by!.toString()));
     let assigned_to: number = parseInt(req.query.assigned_to!.toString());
+    console.log(req.query.due_by);
+    if(req.query.due_by===undefined){
+        await insertTask(title, summary, null, assigned_to);
+    } else{
+        await insertTask(title, summary, new Date(Date.parse(req.query.due_by!.toString())), assigned_to);
+    }
 
-    await insertTask(title, summary, due_by, assigned_to);
+
 
     res.writeHead(200, {
         'Content-Type': 'application/json'

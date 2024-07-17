@@ -14,7 +14,10 @@
     </ul>
 
     <form id="add-todo-form">
-      <input type="text" id="todo-input" placeholder="Enter a new to-do..." required>
+      <input type="text" id="todo-title" placeholder="Enter a title..." required>
+      <input type="text" id="todo-summary" placeholder="Enter a summary..." required>
+      <input type="date" id="todo-due_by">
+
       <button type="submit">Add</button>
     </form>
   </div>
@@ -23,12 +26,6 @@
 
   <script type="module">
     document.addEventListener('DOMContentLoaded', async function() {
-      // Dummy data 
-      // const dummyTasks = [
-      //   { id: 1, title: 'Task 1', summary: 'Summary for Task 1', due_by: '2024-07-17', assigned_to: 1, completed: false },
-      //   { id: 2, title: 'Task 2', summary: 'Summary for Task 2', due_by: '2024-07-18', assigned_to: 2, completed: true },
-      //   { id: 3, title: 'Task 3', summary: 'Summary for Task 3', due_by: '2024-07-19', assigned_to: 3, completed: false }
-      // ];
 
       const tasksREQ = await fetch("http://localhost:8080/tasks").catch(e =>
       alert("Failed"))
@@ -58,24 +55,35 @@
 
       // Form submission event handler for adding new tasks
       const addTodoForm = document.getElementById('add-todo-form');
-      const todoInput = document.getElementById('todo-input');
+      const todoTitle = document.getElementById('todo-title');
+      const todoSummary = document.getElementById('todo-summary');
+      const todoDueBy = document.getElementById('todo-due_by');
 
-      addTodoForm.addEventListener('submit', function(event) {
+
+      addTodoForm.addEventListener('submit', async function(event) {
         event.preventDefault();
-        const newTaskTitle = todoInput.value.trim();
-        if (newTaskTitle) {
+        const newTaskTitle = todoTitle.value.trim();
+        const newTaskSummary = todoSummary.value.trim();
+
           const newTask = {
-            id: Date.now(), 
             title: newTaskTitle,
-            summary: `Summary for ${newTaskTitle}`,
-            due_by: '2024-07-20',
-            assigned_to: 4, 
-            completed: false
+            summary: newTaskSummary,
+            due_by: todoDueBy,
+            assigned_to: 1,
           };
-          dummyTasks.push(newTask);
-          renderTasks(dummyTasks);
-          todoInput.value = ''; 
-        }
+          console.log(newTask)
+          await fetch(`http://localhost:8080/tasks?title=${newTaskTitle}&summary=${newTaskSummary}&assigned_to=1`, {
+            method:"post",
+            headers:{"Content-Type":"application/json"},
+            // body:JSON.stringify(newTask)
+          }).then(response=>{window.location.reload()})
+
+          todoTitle.value = '';
+          todoSummary.value = '';
+          todoDueBy.value = '';
+        // document.getElementById("todo-list").reset();
+
+
       });
     });
   </script>
