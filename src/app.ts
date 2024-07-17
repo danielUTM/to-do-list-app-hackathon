@@ -31,7 +31,6 @@ app.post("/tasks", async (req: Request, res: Response) => {
     let title: String = req.query.title!.toString();
     let summary: String = req.query.summary!.toString();
     let assigned_to: number = parseInt(req.query.assigned_to!.toString());
-    console.log(req.query.due_by);
     if(req.query.due_by===undefined){
         await insertTask(title, summary, null, assigned_to);
     } else{
