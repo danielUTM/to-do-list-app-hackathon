@@ -21,6 +21,11 @@ export interface Tasks {
   username: String;
 }
 
+/**
+ * Reads all non-completed tasks and their assigned to from the DB.
+ *
+ * @returns A promise containing the result from the query.
+ */
 export async function getAllTasksNonCompleted(): Promise<Tasks[]> {
   const client = await getClient();
 
@@ -31,13 +36,22 @@ export async function getAllTasksNonCompleted(): Promise<Tasks[]> {
   return res.rows;
 }
 
+
+/**
+ * Creates a new task in the task table.
+ *
+ * @param title the title of the task
+ * @param summary the summary of the task
+ * @param due_by the date that the task is due by. Optional.
+ * @param assigned_to the person whom the task is assigned to
+ */
 export async function insertTask(
   title: String,
   summary: String,
   due_by: Date | null,
   assigned_to: Number,
 ) {
-  const client = await getClient();
+    const client = await getClient();
 
   let sql: String = format(
     INSERT_TASK_QUERY,
@@ -52,6 +66,11 @@ export async function insertTask(
   await client.end;
 }
 
+/**
+ * Updates a tasks completed_at column to true.
+ *
+ * @param id the id number of the task to mark as complete.
+ */
 export async function updateTaskAsCompleted(id: number) {
   const client = await getClient();
 
