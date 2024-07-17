@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1721225824717" clover="3.2.0">
+  <project timestamp="1721225824717" name="All files">
+    <metrics statements="54" coveredstatements="37" conditionals="2" coveredconditionals="0" methods="13" coveredmethods="8" elements="69" coveredelements="45" complexity="0" loc="54" ncloc="54" packages="1" files="3" classes="3"/>
+    <file name="app.ts" path="/Users/bethanyhall/WebstormProjects/todo/to-do-list-app-hackathon/src/app.ts">
+      <metrics statements="26" coveredstatements="17" conditionals="2" coveredconditionals="0" methods="7" coveredmethods="4"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="2" count="1" type="stmt"/>
+      <line num="8" count="1" type="stmt"/>
+      <line num="10" count="1" type="stmt"/>
+      <line num="12" count="1" type="stmt"/>
+      <line num="14" count="1" type="stmt"/>
+      <line num="15" count="0" type="stmt"/>
+      <line num="25" count="1" type="stmt"/>
+      <line num="26" count="1" type="stmt"/>
+      <line num="27" count="1" type="stmt"/>
+      <line num="30" count="1" type="stmt"/>
+      <line num="33" count="1" type="stmt"/>
+      <line num="34" count="0" type="stmt"/>
+      <line num="35" count="0" type="stmt"/>
+      <line num="36" count="0" type="stmt"/>
+      <line num="37" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="38" count="0" type="stmt"/>
+      <line num="40" count="0" type="stmt"/>
+      <line num="48" count="0" type="stmt"/>
+      <line num="51" count="0" type="stmt"/>
+      <line num="54" count="1" type="stmt"/>
+      <line num="55" count="1" type="stmt"/>
+      <line num="57" count="1" type="stmt"/>
+      <line num="59" count="1" type="stmt"/>
+      <line num="62" count="1" type="stmt"/>
+      <line num="65" count="1" type="stmt"/>
+    </file>
+    <file name="getClient.ts" path="/Users/bethanyhall/WebstormProjects/todo/to-do-list-app-hackathon/src/getClient.ts">
+      <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="4" count="1" type="stmt"/>
+      <line num="6" count="1" type="stmt"/>
+      <line num="7" count="1" type="stmt"/>
+      <line num="14" count="1" type="stmt"/>
+      <line num="15" count="1" type="stmt"/>
+    </file>
+    <file name="sqlMethods.ts" path="/Users/bethanyhall/WebstormProjects/todo/to-do-list-app-hackathon/src/sqlMethods.ts">
+      <metrics statements="22" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="2" count="1" type="stmt"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="6" count="3" type="stmt"/>
+      <line num="9" count="1" type="stmt"/>
+      <line num="12" count="1" type="stmt"/>
+      <line num="13" count="1" type="stmt"/>
+      <line num="24" count="1" type="stmt"/>
+      <line num="25" count="0" type="stmt"/>
+      <line num="27" count="0" type="stmt"/>
+      <line num="29" count="0" type="stmt"/>
+      <line num="31" count="0" type="stmt"/>
+      <line num="34" count="1" type="stmt"/>
+      <line num="40" count="0" type="stmt"/>
+      <line num="42" count="0" type="stmt"/>
+      <line num="50" count="0" type="stmt"/>
+      <line num="52" count="0" type="stmt"/>
+      <line num="55" count="1" type="stmt"/>
+      <line num="56" count="1" type="stmt"/>
+      <line num="58" count="1" type="stmt"/>
+      <line num="60" count="1" type="stmt"/>
+      <line num="62" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>
