@@ -25,4 +25,12 @@ describe("testing app file", () => {
     expect(res._body).toEqual(return_val);
     expect(spy).toHaveBeenCalled();
   });
+
+  it("mark task as complete returns 200", async () => {
+    const taskId = 1;
+    const spy = jest.spyOn(sql, "updateTaskAsCompleted");
+    const res = await request(app).patch(`/task?id=${taskId}`);
+    expect(res.statusCode).toEqual(200);
+    expect(spy).toHaveBeenCalledWith(taskId);
+  });
 });
