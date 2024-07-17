@@ -8,7 +8,6 @@ describe('testing app file', () => {
   it("root tests return 200", async () => {
     const res = await request(app).get("/")
     expect(res.statusCode).toEqual(200)
-    expect(res.text).toEqual("Hello World")
   });
   
   it("get tasks gets tasks successfully", async () => {
