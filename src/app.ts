@@ -1,14 +1,17 @@
 import express, { Request, Response } from "express";
-import {updateTaskAsCompleted, getAllTasksNonCompleted, insertTask, Tasks} from "./sqlMethods"
+import {
+  updateTaskAsCompleted,
+  getAllTasksNonCompleted,
+  insertTask,
+  Tasks,
+} from "./sqlMethods";
 import path from "path";
-
 
 const app = express();
 
-
 app.use(express.static(path.join(__dirname, "public")));
 
-app.get("/", (_request: Request, response: Response) => { 
+app.get("/", (_request: Request, response: Response) => {
   response.sendFile(path.join(__dirname, "/public", "index.html"));
 });
 
@@ -20,29 +23,33 @@ app.get("/", (_request: Request, response: Response) => {
  * @returns A response object containing the stories from the database
  */
 app.get("/tasks", async (req: Request, res: Response) => {
-    let dbRes: Tasks[] = await getAllTasksNonCompleted();
-    res.writeHead(200, {
-      'Content-Type': 'application/json'
-    });
-    res.end(JSON.stringify(dbRes));
+  let dbRes: Tasks[] = await getAllTasksNonCompleted();
+  res.writeHead(200, {
+    "Content-Type": "application/json",
+  });
+  res.end(JSON.stringify(dbRes));
 });
 
 app.post("/tasks", async (req: Request, res: Response) => {
-    let title: String = req.query.title!.toString();
-    let summary: String = req.query.summary!.toString();
-    let assigned_to: number = parseInt(req.query.assigned_to!.toString());
-    if(req.query.due_by===undefined){
-        await insertTask(title, summary, null, assigned_to);
-    } else{
-        await insertTask(title, summary, new Date(Date.parse(req.query.due_by!.toString())), assigned_to);
-    }
+  let title: String = req.query.title!.toString();
+  let summary: String = req.query.summary!.toString();
+  let assigned_to: number = parseInt(req.query.assigned_to!.toString());
+  if (req.query.due_by === undefined) {
+    await insertTask(title, summary, null, assigned_to);
+  } else {
+    await insertTask(
+      title,
+      summary,
+      new Date(Date.parse(req.query.due_by!.toString())),
+      assigned_to,
+    );
+  }
 
-
-    res.writeHead(200, {
-        'Content-Type': 'application/json'
-    });
-    res.end();
-})
+  res.writeHead(200, {
+    "Content-Type": "application/json",
+  });
+  res.end();
+});
 
 app.patch("/task", async (req: Request, res: Response) => {
   let id: number = parseInt(req.query.id!.toString());
@@ -50,9 +57,9 @@ app.patch("/task", async (req: Request, res: Response) => {
   await updateTaskAsCompleted(id);
 
   res.writeHead(200, {
-        'Content-Type': 'application/json'
-    });
-    res.end();
-})
+    "Content-Type": "application/json",
+  });
+  res.end();
+});
 
 module.exports = app;
